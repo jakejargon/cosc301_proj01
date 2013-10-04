@@ -1,10 +1,10 @@
-
 # this file is a sample input file for project 1
 # lines beginning with a '#' symbol are comments and should be ignored
 # also, any part of a line *after* the '#' symbol should be ignored
 # blank lines should also be ignored
 # non-valid inputs include any non-integers or strings
 # 
+
 34                              # valid input '34'
 -65                             # valid input '-65'
 5.43                            # this should be ignored

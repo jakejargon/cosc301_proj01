@@ -13,12 +13,10 @@ void list_clear(struct node *list) {
 }
 
 void printdelist(struct node *list) {
-	printf("Printing list vvv\n");
 	while (list != NULL) {
 		printf("%d\n", list->val);
 		list = list -> next;
 	}
-	printf("------------\n");
 }
 
 void insert_sort(const int add_val, struct node **head) {

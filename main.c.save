@@ -1,4 +1,3 @@
-
 /*
  *
  Jacob Ellison
@@ -13,8 +12,7 @@
 #include <string.h>
 #include <errno.h>
 #include <ctype.h>
-#include <sys/time.h>
-#include <sys/resource.h>
+
 #include "list.h"
 
 void usage(char *program) {
@@ -51,18 +49,18 @@ int main(int argc, char **argv) {
 
 	//Jacob's code starts here vvv
 
-	printf("***List Contents Begin***\n");
+	struct node* head = NULL;
+	char* buffer;
 
-	struct node *head = NULL;
-	char buffer[1024];
 	while (fgets(buffer, 1024, datafile) != NULL) {
+
 		//get rid of all comments in the string
 		int buff_len = strlen(buffer);
 		int i = 0;
 		for (; i < buff_len; i++) {
 			if (buffer[i] == '#') {
 				buffer[i] = '\0';
-				break;
+				printf("killed\n");
 			}
 		}
 
@@ -75,13 +73,9 @@ int main(int argc, char **argv) {
 			i = 0;
 			int addit = 0;
 			int test;
-			if (word[0] == '-') {
-				i++;
-			}
 			for (; i < word_len; i++) {
 				test = isdigit(word[i]);
-				if (test == 0 || word[i] == '.') {
-					addit = 0;
+				if (test == 0) {
 					break;
 				}
 				else {
@@ -95,17 +89,11 @@ int main(int argc, char **argv) {
 			}
 		}
 	}
-
-	printf("***List Contents End***\n");
+	printdelist(head);
 	list_clear(head);
-
-	struct rusage ru;
-	getrusage(RUSAGE_SELF, &ru);
-	printf("System time: ");
-	printf("%ld.%06ld\n", ru.ru_stime.tv_sec);
-	printf("User time: ");
-	printf("%ld.%06ld\n", ru.ru_utime.tv_usec);
-
+	//struct rusage ru;
+	//int ru = getrusage(RUSAGE_SELF, &ru);
+	//printf("%d.%06d\n",ru.stime.tv_sec, ru.stime.tv_usec);
 
     /* 
      * you should be able to just read from datafile regardless 
