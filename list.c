@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "list.h"
 
-/* your list function definitions */
+/*  your list function definitions */
 
 void list_clear(struct node *list) {
     while (list != NULL) {
